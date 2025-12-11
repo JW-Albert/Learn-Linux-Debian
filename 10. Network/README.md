@@ -597,9 +597,18 @@ resolvectl status
 # 檢查服務是否監聽
 sudo ss -tlnp | grep :80
 sudo netstat -tlnp | grep :80
+sudo lsof -i :80
 
 # 檢查特定埠
 sudo ss -tlnp | grep :22
+sudo lsof -i :22
+sudo lsof -i tcp:22
+
+# 查看所有監聽的埠
+sudo lsof -i -sTCP:LISTEN
+
+# 查看特定程序使用的埠
+sudo lsof -i -p PID
 ```
 
 ### 常見問題診斷
@@ -688,9 +697,16 @@ sudo nano /etc/sysctl.conf
 # 查看監聽的埠
 sudo ss -tlnp
 sudo netstat -tlnp
+sudo lsof -i -sTCP:LISTEN
 
 # 查看所有連線
 sudo ss -tulpn
+sudo lsof -i
+
+# 查看特定埠的使用情況
+sudo lsof -i :80
+sudo lsof -i tcp:80
+sudo lsof -i udp:53
 ```
 
 ### 設定防火牆
