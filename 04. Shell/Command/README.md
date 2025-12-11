@@ -1139,6 +1139,91 @@ uname -r
 uname -m
 ```
 
+### lsof
+
+列出開啟的檔案和程序。
+
+```bash
+# 列出所有開啟的檔案（需要 root）
+sudo lsof
+
+# 列出特定程序開啟的檔案
+sudo lsof -p PID
+
+# 列出特定使用者開啟的檔案
+sudo lsof -u username
+
+# 列出特定檔案被哪些程序使用
+sudo lsof /path/to/file
+
+# 列出特定目錄被哪些程序使用
+sudo lsof +D /path/to/directory
+
+# 列出特定埠的使用情況
+sudo lsof -i :80
+sudo lsof -i tcp:80
+sudo lsof -i udp:53
+
+# 列出所有網路連線
+sudo lsof -i
+
+# 列出特定程序的網路連線
+sudo lsof -i -p PID
+
+# 列出特定使用者的網路連線
+sudo lsof -i -u username
+
+# 列出 TCP 連線
+sudo lsof -i tcp
+
+# 列出 UDP 連線
+sudo lsof -i udp
+
+# 列出監聽的埠
+sudo lsof -i -sTCP:LISTEN
+
+# 列出特定 IP 的連線
+sudo lsof -i @192.168.1.100
+
+# 列出特定 IP 和埠的連線
+sudo lsof -i @192.168.1.100:80
+
+# 組合使用
+sudo lsof -u username -i tcp:80
+sudo lsof -p PID -i
+```
+
+**常用選項：**
+- `-p PID`：指定程序 ID
+- `-u username`：指定使用者
+- `-i`：列出網路連線
+- `-i :port`：指定埠號
+- `-i tcp`：只列出 TCP 連線
+- `-i udp`：只列出 UDP 連線
+- `+D directory`：列出目錄下所有檔案的使用情況
+- `-c command`：列出特定命令開啟的檔案
+
+**實用範例：**
+```bash
+# 找出哪個程序佔用了 80 埠
+sudo lsof -i :80
+
+# 找出哪個程序正在使用某個檔案
+sudo lsof /var/log/syslog
+
+# 找出特定使用者開啟的所有檔案
+sudo lsof -u albert
+
+# 找出所有網路連線
+sudo lsof -i
+
+# 找出特定程序的網路連線
+sudo lsof -i -p $(pgrep nginx)
+
+# 找出所有監聽的埠
+sudo lsof -i -sTCP:LISTEN
+```
+
 ## 管道與重導向
 
 ### 管道 (|)
