@@ -824,6 +824,9 @@ nslookup google.com
 # 查看連線
 ss -tulpn
 netstat -tulpn
+sudo lsof -i
+sudo lsof -i :80
+sudo lsof -i -sTCP:LISTEN
 ```
 
 ## 相關檔案位置
