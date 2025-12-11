@@ -11,9 +11,11 @@
 - **權限管理**：使用者、群組、檔案權限控制
 - **Shell 操作**：命令列操作、腳本撰寫、路徑概念
 - **文字編輯器**：Nano、Vim 使用教學
-- **系統管理**：資源監控、程序管理、服務管理
+- **系統管理**：資源監控、程序管理、服務管理、時間管理、Systemd
 - **版本控制**：Git 完整教學
 - **網路與安全**：SSH、防火牆（UFW）、網路設定
+- **網路服務**：Web 伺服器、資料庫、郵件服務配置
+- **開發環境**：C/C++/Python 編譯環境設定
 
 ## 學習路徑
 
@@ -36,6 +38,10 @@
 12. **[SSH 遠端連線](08.%20SSH/README.md)** - 遠端管理伺服器
 13. **[防火牆設定](09.%20UFW/README.md)** - 保護系統安全
 14. **[網路設定](10.%20Network/README.md)** - 配置網路連線
+15. **[時間管理](11.%20Time/README.md)** - 系統時間與時區設定
+16. **[Systemd 管理](12.%20Systemd/README.md)** - 服務管理與系統初始化
+17. **[網路服務配置](13.%20Services/README.md)** - Web、資料庫等服務設定
+18. **[編譯環境](14.%20Compile/README.md)** - C/C++/Python 開發環境
 
 ## 目錄導航
 
@@ -159,6 +165,38 @@
   - DNS 配置
   - 網路工具使用
 
+### 系統管理進階
+
+- **[11. Time](11.%20Time/README.md)**
+  - 系統時間設定
+  - 時區配置
+  - NTP 時間同步
+  - 硬體時間管理
+
+- **[12. Systemd](12.%20Systemd/README.md)**
+  - Systemd 基本概念
+  - 服務管理（systemctl）
+  - 單元檔案編寫
+  - Timer 定時器
+  - 日誌管理（journalctl）
+
+- **[13. Services](13.%20Services/README.md)**
+  - Web 伺服器（Nginx、Apache）
+  - 資料庫服務（MySQL、PostgreSQL）
+  - 郵件服務（Postfix）
+  - 檔案共享（Samba、NFS）
+  - DNS 伺服器（BIND9）
+  - FTP 伺服器（vsftpd）
+
+### 開發環境
+
+- **[14. Compile](14.%20Compile/README.md)**
+  - C/C++ 編譯環境（GCC）
+  - Makefile 與 CMake
+  - Python 開發環境
+  - 虛擬環境管理
+  - 開發工具使用
+
 ## 快速參考
 
 ### 常用指令
@@ -187,6 +225,21 @@ ps aux
 ip addr show
 ping google.com
 ss -tulpn
+
+# 時間管理
+timedatectl
+sudo timedatectl set-timezone Asia/Taipei
+sudo timedatectl set-ntp true
+
+# Systemd
+sudo systemctl start service-name
+sudo systemctl status service-name
+sudo journalctl -u service-name
+
+# 編譯
+gcc file.c -o program
+make
+python3 -m venv venv
 ```
 
 ### 重要檔案位置
@@ -198,6 +251,10 @@ ss -tulpn
 - DNS 設定：`/etc/resolv.conf`
 - SSH 設定：`~/.ssh/config`、`/etc/ssh/sshd_config`
 - UFW 設定：`/etc/ufw/`
+- 時區設定：`/etc/localtime`、`/etc/timezone`
+- Systemd 單元：`/etc/systemd/system/`
+- Nginx 設定：`/etc/nginx/`
+- MySQL 設定：`/etc/mysql/`
 
 ## 學習建議
 
